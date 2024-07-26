@@ -13,6 +13,7 @@ const HomePage = () => {
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
+  const [typeFilter, setTypeFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(12);
   const [loading, setLoading] = useState(true);
@@ -43,12 +44,21 @@ const HomePage = () => {
   };
 
   const applyFilter = (pokemons) => {
+    let filteredPokemons = pokemons;
+
     if (filter === 'api') {
-      return pokemons.filter(pokemon => !pokemon.createdInDb);
+      filteredPokemons = filteredPokemons.filter((pokemon) => !pokemon.createdInDb);
     } else if (filter === 'database') {
-      return pokemons.filter(pokemon => pokemon.createdInDb);
+      filteredPokemons = filteredPokemons.filter((pokemon) => pokemon.createdInDb);
     }
-    return pokemons;
+
+    if (typeFilter) {
+      filteredPokemons = filteredPokemons.filter((pokemon) =>
+        pokemon.types.includes(typeFilter)
+      );
+    }
+
+    return filteredPokemons;
   };
 
   const applySort = (pokemons) => {
@@ -65,7 +75,7 @@ const HomePage = () => {
   };
 
   // Apply search, filter, and sort
-  const filteredPokemons = pokemons.filter(pokemon =>
+  const filteredPokemons = pokemons.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(search.toLowerCase())
   );
   const filteredAndSortedPokemons = applySort(applyFilter(filteredPokemons));
@@ -96,7 +106,7 @@ const HomePage = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <FilterAndSort setFilter={setFilter} setSort={setSort} />
+      <FilterAndSort setFilter={setFilter} setSort={setSort} setTypeFilter={setTypeFilter} />
       {loading ? (
         <p>Loading...</p>
       ) : (

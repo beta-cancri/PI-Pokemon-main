@@ -54,7 +54,7 @@ const createPokemonHandler = async (req, res) => {
     console.log('Pokemon created:', response);
     res.status(200).json(response);
   } catch (error) {
-    console.error('Error in createPokemonHandler:', error.message);
+    console.error('Error in createPokemonHandler:', error);
     res.status(400).json({ error: error.message });
   }
 };

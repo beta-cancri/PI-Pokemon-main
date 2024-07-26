@@ -6,14 +6,20 @@ import './detail.styles.css';
 
 const DetailPage = () => {
   const { id } = useParams();
+  console.log(`DetailPage: Retrieved id from URL: ${id}`); // Debugging log
   const dispatch = useDispatch();
   const pokemonDetail = useSelector((state) => state.pokemonDetail);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(fetchPokemonDetail(id));
-      setLoading(false);
+      if (id) {
+        console.log(`Fetching detail for Pokémon with ID: ${id}`); // Debugging log
+        await dispatch(fetchPokemonDetail(id));
+        setLoading(false);
+      } else {
+        console.error('No ID provided in URL');
+      }
     };
 
     fetchData();

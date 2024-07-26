@@ -1,30 +1,34 @@
-import { FETCH_POKEMONS_SUCCESS, FETCH_POKEMON_DETAIL_SUCCESS, CREATE_POKEMON_SUCCESS } from '../actions';
+import { FETCH_POKEMONS_SUCCESS, FETCH_POKEMON_DETAIL_SUCCESS, CREATE_POKEMON_SUCCESS, FETCH_TYPES_SUCCESS } from '../actions';
 
 const initialState = {
   pokemons: [],
   pokemonDetail: {},
-  createdPokemon: {},
+  types: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POKEMONS_SUCCESS:
-      console.log('Reducer updating pokemons state with payload:', action.payload);
+      console.log('Reducer updating pokemons state with payload:', action.payload); // Add this log
       return {
         ...state,
         pokemons: action.payload,
       };
     case FETCH_POKEMON_DETAIL_SUCCESS:
-      console.log('Reducer updating pokemonDetail state with payload:', action.payload);
+      console.log('Reducer updating pokemonDetail state with payload:', action.payload); // Add this log
       return {
         ...state,
         pokemonDetail: action.payload,
       };
     case CREATE_POKEMON_SUCCESS:
-      console.log('Reducer updating createdPokemon state with payload:', action.payload);
       return {
         ...state,
-        createdPokemon: action.payload,
+        pokemons: [...state.pokemons, action.payload],
+      };
+    case FETCH_TYPES_SUCCESS:
+      return {
+        ...state,
+        types: action.payload,
       };
     default:
       return state;

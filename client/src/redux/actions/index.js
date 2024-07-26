@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_POKEMONS_SUCCESS = 'FETCH_POKEMONS_SUCCESS';
 export const FETCH_POKEMON_DETAIL_SUCCESS = 'FETCH_POKEMON_DETAIL_SUCCESS';
 export const CREATE_POKEMON_SUCCESS = 'CREATE_POKEMON_SUCCESS';
+export const FETCH_TYPES_SUCCESS = 'FETCH_TYPES_SUCCESS';
 
 export const fetchPokemons = () => async (dispatch) => {
   try {
@@ -28,6 +29,7 @@ export const fetchPokemonByName = (name) => async (dispatch) => {
 
 export const fetchPokemonDetail = (id) => async (dispatch) => {
   try {
+    console.log(`Fetching Pokemon detail for ID: ${id}`); // Debugging log
     const response = await axios.get(`http://localhost:3001/pokemons/${id}`);
     console.log('Fetched Pokemon detail:', response.data);
     dispatch({ type: FETCH_POKEMON_DETAIL_SUCCESS, payload: response.data });
@@ -43,5 +45,15 @@ export const createPokemon = (pokemon) => async (dispatch) => {
     dispatch({ type: CREATE_POKEMON_SUCCESS, payload: response.data });
   } catch (error) {
     console.error('Error creating pokemon:', error.message);
+  }
+};
+
+export const fetchTypes = () => async (dispatch) => {
+  try {
+    const response = await axios.get('http://localhost:3001/types');
+    console.log('Fetched Types:', response.data);
+    dispatch({ type: FETCH_TYPES_SUCCESS, payload: response.data });
+  } catch (error) {
+    console.error('Error fetching types:', error.message);
   }
 };

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { createPokemon } from '../../redux/actions';
 import './create.styles.css';
 
 const CreatePage = () => {
   const dispatch = useDispatch();
+  const [types, setTypes] = useState([]);
   const [form, setForm] = useState({
     name: '',
     image: '',
@@ -14,8 +16,21 @@ const CreatePage = () => {
     speed: '',
     height: '',
     weight: '',
-    types: []
+    typeIds: []
   });
+
+  useEffect(() => {
+    const fetchTypes = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/types');
+        setTypes(response.data);
+      } catch (error) {
+        console.error('Error fetching types:', error.message);
+      }
+    };
+
+    fetchTypes();
+  }, []);
 
   const handleChange = (e) => {
     setForm({
@@ -24,8 +39,20 @@ const CreatePage = () => {
     });
   };
 
+  const handleTypeChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+    setForm({
+      ...form,
+      typeIds: selectedOptions.map(id => parseInt(id))
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (Object.values(form).some(value => value === '' || value.length === 0)) {
+      alert('Please fill out all fields.');
+      return;
+    }
     dispatch(createPokemon(form));
   };
 
@@ -67,7 +94,13 @@ const CreatePage = () => {
         </label>
         <label>
           Types:
-          <input type="text" name="types" value={form.types} onChange={(e) => setForm({ ...form, types: e.target.value.split(',') })} placeholder="Enter types separated by comma" />
+          <select multiple={true} value={form.typeIds} onChange={handleTypeChange}>
+            {types.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.name}
+              </option>
+            ))}
+          </select>
         </label>
         <button type="submit">Create Pokémon</button>
       </form>
