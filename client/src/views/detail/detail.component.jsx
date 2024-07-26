@@ -1,34 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { fetchPokemonDetail } from '../../redux/actions';
 import './detail.styles.css';
 
-const DetailPage = ({ match }) => {
+const DetailPage = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
-  const pokemon = useSelector((state) => state.pokemonDetail);
+  const pokemonDetail = useSelector((state) => state.pokemonDetail);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchPokemonDetail(match.params.id));
-  }, [dispatch, match.params.id]);
+    const fetchData = async () => {
+      await dispatch(fetchPokemonDetail(id));
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [dispatch, id]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!pokemonDetail || Object.keys(pokemonDetail).length === 0) {
+    return <p>Pokemon not found</p>;
+  }
 
   return (
-    <div className="detail">
-      {pokemon ? (
-        <>
-          <h1>{pokemon.name}</h1>
-          <img src={pokemon.image} alt={pokemon.name} />
-          <p>ID: {pokemon.id}</p>
-          <p>Health: {pokemon.health}</p>
-          <p>Attack: {pokemon.attack}</p>
-          <p>Defense: {pokemon.defense}</p>
-          <p>Speed: {pokemon.speed}</p>
-          <p>Height: {pokemon.height}</p>
-          <p>Weight: {pokemon.weight}</p>
-          <p>Types: {pokemon.types.join(', ')}</p>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="detail-page">
+      <h1>{pokemonDetail.name}</h1>
+      <img src={pokemonDetail.image} alt={pokemonDetail.name} />
+      <p><strong>ID:</strong> {pokemonDetail.id}</p>
+      <p><strong>Types:</strong> {pokemonDetail.types ? pokemonDetail.types.join(', ') : 'No types available'}</p>
+      <p><strong>Health:</strong> {pokemonDetail.health}</p>
+      <p><strong>Attack:</strong> {pokemonDetail.attack}</p>
+      <p><strong>Defense:</strong> {pokemonDetail.defense}</p>
+      <p><strong>Speed:</strong> {pokemonDetail.speed}</p>
+      <p><strong>Height:</strong> {pokemonDetail.height}</p>
+      <p><strong>Weight:</strong> {pokemonDetail.weight}</p>
     </div>
   );
 };

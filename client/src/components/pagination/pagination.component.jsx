@@ -8,12 +8,17 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, paginate }) => {
     pageNumbers.push(i);
   }
 
+  const handleClick = (number) => (e) => {
+    e.preventDefault();
+    paginate(number);
+  };
+
   return (
     <nav className="pagination">
       <ul className="pagination-list">
         {pageNumbers.map((number) => (
           <li key={number} className="pagination-item">
-            <a onClick={() => paginate(number)} href="!#" className="pagination-link">
+            <a onClick={handleClick(number)} href="/" className="pagination-link">
               {number}
             </a>
           </li>

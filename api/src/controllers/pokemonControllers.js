@@ -27,38 +27,44 @@ const getPokemonById = async (id, source) => {
     console.log('Pokemon found by ID:', pokemon);
     return pokemon;
   } else {
-    console.log('Fetching Pokemon from API by ID:', id);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const { name, sprites, types } = response.data;
+    return {
+      id,
+      name,
+      image: sprites.front_default,
+      types: types.map((t) => t.type.name),
+    };
   }
 };
 
 const getAllPokemons = async () => {
   try {
-    // Fetch Pokémons from database
     const dbPokemons = await Pokemon.findAll({ include: Type });
-    const formattedDbPokemons = dbPokemons.map(pokemon => ({
+    const formattedDbPokemons = dbPokemons.map((pokemon) => ({
+      id: pokemon.id,
       name: pokemon.name,
       image: pokemon.image,
-      types: pokemon.Types.map(type => type.name)
+      types: pokemon.Types.map((type) => type.name),
     }));
     console.log('All Pokemons from DB:', formattedDbPokemons);
 
-    // Fetch basic list of Pokémons from external API
-    const apiResponse = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100'); // Adjust the limit as needed
+    const apiResponse = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=100');
     const apiPokemons = apiResponse.data.results;
     console.log('All Pokemons from API:', apiPokemons);
 
-    // Fetch detailed data for each Pokémon from the API
-    const detailedApiPokemons = await Promise.all(apiPokemons.map(async pokemon => {
-      const detailResponse = await axios.get(pokemon.url);
-      const { name, sprites, types } = detailResponse.data;
-      return {
-        name,
-        image: sprites.front_default,
-        types: types.map(t => t.type.name)
-      };
-    }));
+    const detailedApiPokemons = await Promise.all(
+      apiPokemons.map(async (pokemon) => {
+        const detailResponse = await axios.get(pokemon.url);
+        const { name, sprites, types } = detailResponse.data;
+        return {
+          name,
+          image: sprites.front_default,
+          types: types.map((t) => t.type.name),
+        };
+      })
+    );
 
-    // Combine the API and DB Pokémon data
     const combinedPokemons = [...formattedDbPokemons, ...detailedApiPokemons];
     return combinedPokemons;
   } catch (error) {
@@ -67,11 +73,38 @@ const getAllPokemons = async () => {
   }
 };
 
+const fetchPokemonFromApiByName = async (name) => {
+  try {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`);
+    const { id, sprites, types } = response.data;
+    return {
+      id,
+      name: response.data.name,
+      image: sprites.front_default,
+      types: types.map((t) => t.type.name),
+    };
+  } catch (error) {
+    console.error('Error fetching Pokemon from API by name:', error.message);
+    return null;
+  }
+};
+
 const getPokemonByName = async (name) => {
-  const pokemon = await Pokemon.findAll({ where: { name }, include: Type });
-  if (pokemon.length === 0) throw new Error('Pokemon not found');
-  console.log('Pokemon found by name:', pokemon);
-  return pokemon;
+  console.log(`Searching for Pokemon by name: ${name}`);
+  const dbPokemon = await Pokemon.findAll({ where: { name }, include: Type });
+  if (dbPokemon.length > 0) {
+    console.log('Pokemon found by name in DB:', dbPokemon);
+    return dbPokemon;
+  } else {
+    console.log('Pokemon not found in DB, searching in API...');
+    const apiPokemon = await fetchPokemonFromApiByName(name);
+    if (apiPokemon) {
+      console.log('Pokemon found by name in API:', apiPokemon);
+      return [apiPokemon];
+    } else {
+      throw new Error('Pokemon not found');
+    }
+  }
 };
 
 module.exports = {

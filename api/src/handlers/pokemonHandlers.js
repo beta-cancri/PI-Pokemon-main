@@ -9,6 +9,7 @@ const getPokemonHandler = async (req, res) => {
   const { name } = req.query;
   try {
     if (name) {
+      console.log(`Handler received search query for: ${name}`);
       const pokemonByName = await getPokemonByName(name);
       console.log('Pokemon by name:', pokemonByName);
       res.status(200).json(pokemonByName);
@@ -18,7 +19,7 @@ const getPokemonHandler = async (req, res) => {
       res.status(200).json(response);
     }
   } catch (error) {
-    console.error('Error in getPokemonHandler:', error);
+    console.error('Error in getPokemonHandler:', error.message);
     res.status(400).json({ error: error.message });
   }
 };
@@ -31,7 +32,7 @@ const getDetailHandler = async (req, res) => {
     console.log('Pokemon detail:', response);
     res.status(200).json(response);
   } catch (error) {
-    console.error('Error in getDetailHandler:', error);
+    console.error('Error in getDetailHandler:', error.message);
     res.status(400).json({ error: error.message });
   }
 };
@@ -53,7 +54,7 @@ const createPokemonHandler = async (req, res) => {
     console.log('Pokemon created:', response);
     res.status(200).json(response);
   } catch (error) {
-    console.error('Error in createPokemonHandler:', error);
+    console.error('Error in createPokemonHandler:', error.message);
     res.status(400).json({ error: error.message });
   }
 };

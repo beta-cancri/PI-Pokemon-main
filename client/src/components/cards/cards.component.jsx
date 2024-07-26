@@ -6,9 +6,13 @@ const Cards = ({ pokemons }) => {
   console.log('Cards component received pokemons:', pokemons); // Debugging log
   return (
     <div className="cards-container">
-      {pokemons.map((pokemon) => (
-        <Card key={pokemon.id} pokemon={pokemon} />
-      ))}
+      {pokemons.length > 0 ? (
+        pokemons.map((pokemon) => (
+          <Card key={pokemon.id || pokemon.name} pokemon={pokemon} />
+        ))
+      ) : (
+        <p>No Pokémon found</p>
+      )}
     </div>
   );
 };
