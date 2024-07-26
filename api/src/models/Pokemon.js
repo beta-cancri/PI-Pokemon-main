@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 module.exports = (sequelize) => {
   sequelize.define('Pokemon', {
     id: {
@@ -7,35 +8,35 @@ module.exports = (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagen: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    vida: {
+    health: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    ataque: {
+    attack: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    defensa: {
+    defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    velocidad: {
+    speed: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    altura: {
+    height: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    peso: {
+    weight: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
