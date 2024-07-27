@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { createPokemon } from '../../redux/actions';
+import HomeButton from '../../components/home-button/home-button.component';
 import './create.styles.css';
 
 const CreatePage = () => {
@@ -19,6 +20,7 @@ const CreatePage = () => {
     typeIds: []
   });
   const [errors, setErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -32,6 +34,25 @@ const CreatePage = () => {
 
     fetchTypes();
   }, []);
+
+  useEffect(() => {
+    const validateForm = () => {
+      const newErrors = {};
+      if (!form.name) newErrors.name = 'Name is required';
+      if (!form.image) newErrors.image = 'Image is required';
+      if (!form.health) newErrors.health = 'Health is required';
+      if (!form.attack) newErrors.attack = 'Attack is required';
+      if (!form.defense) newErrors.defense = 'Defense is required';
+      if (!form.speed) newErrors.speed = 'Speed is required';
+      if (!form.height) newErrors.height = 'Height is required';
+      if (!form.weight) newErrors.weight = 'Weight is required';
+      if (form.typeIds.length === 0) newErrors.typeIds = 'At least one type is required';
+      setErrors(newErrors);
+      setIsFormValid(Object.keys(newErrors).length === 0);
+    };
+
+    validateForm();
+  }, [form]);
 
   const handleChange = (e) => {
     setForm({
@@ -48,24 +69,9 @@ const CreatePage = () => {
     });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!form.name) newErrors.name = 'Name is required';
-    if (!form.image) newErrors.image = 'Image is required';
-    if (!form.health) newErrors.health = 'Health is required';
-    if (!form.attack) newErrors.attack = 'Attack is required';
-    if (!form.defense) newErrors.defense = 'Defense is required';
-    if (!form.speed) newErrors.speed = 'Speed is required';
-    if (!form.height) newErrors.height = 'Height is required';
-    if (!form.weight) newErrors.weight = 'Weight is required';
-    if (form.typeIds.length === 0) newErrors.typeIds = 'At least one type is required';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (isFormValid) {
       dispatch(createPokemon(form));
     }
   };
@@ -125,7 +131,7 @@ const CreatePage = () => {
           </select>
           {errors.typeIds && <p className="error">{errors.typeIds}</p>}
         </label>
-        <button type="submit">Create Pokémon</button>
+        <button type="submit" disabled={!isFormValid}>Create Pokémon</button>
       </form>
     </div>
   );

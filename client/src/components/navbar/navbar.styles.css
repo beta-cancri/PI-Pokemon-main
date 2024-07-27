@@ -1,17 +1,84 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
 .navbar {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-  }
-  
-  .nav-link:hover {
-    text-decoration: underline;
-  }
-  
+  font-family: 'PokemonFont', sans-serif;
+  background-color: red;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar .nav-links {
+  display: flex;
+  margin-left: 47%;
+  flex: 1;
+}
+
+.navbar .nav-link {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-family: 'PokemonFont', sans-serif;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+.navbar .search-form {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar .search-form .search-bar {
+  margin-top: 21px;
+  margin-right: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+
+.navbar .search-form button {
+  padding: 5px 10px;
+  background-color: white;
+  color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'PokemonFont', sans-serif;
+}
+
+.navbar .search-form button:hover {
+  background-color: lightgray;
+}
+
+.navbar .search-form .clear-search {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'PokemonFont', sans-serif;
+}
+
+.navbar .search-form .clear-search:hover {
+  background-color: darkgray;
+}
+
+.pokemon-name {
+  font-family: 'PokemonFont', sans-serif;
+}

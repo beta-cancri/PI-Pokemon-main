@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchPokemonDetail } from '../../redux/actions';
+import HomeButton from '../../components/home-button/home-button.component';
 import './detail.styles.css';
 
 const DetailPage = () => {
   const { id } = useParams();
-  console.log(`DetailPage: Retrieved id from URL: ${id}`); // Debugging log
   const dispatch = useDispatch();
   const pokemonDetail = useSelector((state) => state.pokemonDetail);
   const [loading, setLoading] = useState(true);
 
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        console.log(`Fetching detail for Pokémon with ID: ${id}`); // Debugging log
         await dispatch(fetchPokemonDetail(id));
         setLoading(false);
       } else {
@@ -35,7 +38,7 @@ const DetailPage = () => {
 
   return (
     <div className="detail-page">
-      <h1>{pokemonDetail.name}</h1>
+      <h1 className="pokemon-name">{capitalizeFirstLetter(pokemonDetail.name)}</h1>
       <img src={pokemonDetail.image} alt={pokemonDetail.name} />
       <p><strong>ID:</strong> {pokemonDetail.id}</p>
       <p><strong>Types:</strong> {pokemonDetail.types ? pokemonDetail.types.join(', ') : 'No types available'}</p>

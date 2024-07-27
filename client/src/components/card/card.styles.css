@@ -1,15 +1,19 @@
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  transition: transform 0.2s;
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
 }
 
-.card:hover {
-  transform: scale(1.05);
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #fff;
 }
 
 .card-image {
@@ -17,7 +21,7 @@
   height: 100px;
 }
 
-.card-link {
-  text-decoration: none;
-  color: inherit;
+.pokemon-name {
+  font-family: 'PokemonFont', sans-serif;
+  text-transform: capitalize;
 }

@@ -1,17 +1,27 @@
-.detail {
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
+.detail-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
 }
 
-.detail img {
+.detail-page img {
   width: 200px;
   height: 200px;
   object-fit: cover;
   margin-bottom: 20px;
 }
 
-.detail p {
+.detail-page p {
   margin: 5px 0;
+}
+
+.pokemon-name {
+  font-family: 'PokemonFont', sans-serif;
+  text-transform: capitalize;
 }

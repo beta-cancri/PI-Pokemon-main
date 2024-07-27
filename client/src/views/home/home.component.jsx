@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPokemons, fetchPokemonByName } from '../../redux/actions';
-import Navbar from '../../components/navbar/navbar.component';
 import Cards from '../../components/cards/cards.component';
 import Pagination from '../../components/pagination/pagination.component';
 import FilterAndSort from '../../components/filters/filter-and-sort.component';
 import './home.styles.css';
 
-const HomePage = () => {
+const HomePage = ({ search, setSearch, handleSearchSubmit }) => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemons);
-  const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
@@ -26,22 +24,6 @@ const HomePage = () => {
 
     fetchData();
   }, [dispatch]);
-
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSearchSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    if (search) {
-      console.log(`Dispatching search for: ${search}`);
-      await dispatch(fetchPokemonByName(search));
-    } else {
-      await dispatch(fetchPokemons());
-    }
-    setLoading(false);
-  };
 
   const applyFilter = (pokemons) => {
     let filteredPokemons = pokemons;
@@ -95,17 +77,6 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <Navbar />
-      <form onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Search Pokémon by name"
-          className="search-bar"
-          value={search}
-          onChange={handleSearchChange}
-        />
-        <button type="submit">Search</button>
-      </form>
       <FilterAndSort setFilter={setFilter} setSort={setSort} setTypeFilter={setTypeFilter} />
       {loading ? (
         <p>Loading...</p>
