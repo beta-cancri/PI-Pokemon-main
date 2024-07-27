@@ -47,9 +47,9 @@ const HomePage = () => {
     let filteredPokemons = pokemons;
 
     if (filter === 'api') {
-      filteredPokemons = filteredPokemons.filter((pokemon) => !pokemon.createdInDb);
+      filteredPokemons = filteredPokemons.filter((pokemon) => !pokemon.created);
     } else if (filter === 'database') {
-      filteredPokemons = filteredPokemons.filter((pokemon) => pokemon.createdInDb);
+      filteredPokemons = filteredPokemons.filter((pokemon) => pokemon.created);
     }
 
     if (typeFilter) {

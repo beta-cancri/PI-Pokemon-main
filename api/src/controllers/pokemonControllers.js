@@ -11,6 +11,7 @@ const createPokemonDB = async (name, image, health, attack, defense, speed, heig
     speed,
     height,
     weight,
+    created: true,
   });
 
   if (typeIds && typeIds.length > 0) {
@@ -45,6 +46,7 @@ const getPokemonById = async (id, source) => {
       height,
       weight,
       ...attributes,
+      created: false,
     };
   }
 };
@@ -63,6 +65,7 @@ const getAllPokemons = async () => {
       height: pokemon.height,
       weight: pokemon.weight,
       types: pokemon.Types.map((type) => type.name),
+      created: pokemon.created,
     }));
     console.log('All Pokemons from DB:', formattedDbPokemons);
 
@@ -88,6 +91,7 @@ const getAllPokemons = async () => {
           height,
           weight,
           ...attributes,
+          created: false,
         };
       })
     );
@@ -118,6 +122,7 @@ const fetchPokemonFromApiByName = async (name) => {
       height,
       weight,
       ...attributes,
+      created: false,
     };
   } catch (error) {
     console.error('Error fetching Pokemon from API by name:', error.message);
