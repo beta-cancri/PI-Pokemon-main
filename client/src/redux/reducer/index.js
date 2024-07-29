@@ -9,13 +9,13 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POKEMONS_SUCCESS:
-      console.log('Reducer updating pokemons state with payload:', action.payload); // Add this log
+      console.log('Reducer updating pokemons state with payload:', action.payload); // Debbuging log
       return {
         ...state,
         pokemons: action.payload,
       };
     case FETCH_POKEMON_DETAIL_SUCCESS:
-      console.log('Reducer updating pokemonDetail state with payload:', action.payload); // Add this log
+      console.log('Reducer updating pokemonDetail state with payload:', action.payload); // Debbuging log
       return {
         ...state,
         pokemonDetail: action.payload,

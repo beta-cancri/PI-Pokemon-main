@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('https://i.imgur.com/zi6yA75.jpg'); /* Replace with your image path */
+  background-image: url('https://i.imgur.com/zi6yA75.jpg'); 
   background-size: cover;
   color: white;
   text-align: center;
@@ -31,7 +31,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: 0; /* Make text invisible */
+  font-size: 0; 
 }
 
 .click-me-label {
@@ -42,7 +42,7 @@
   font-family: 'PokemonFont', sans-serif;
   color: white;
   font-size: 14px;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 2px 5px;
   border-radius: 5px;
 }

@@ -6,8 +6,8 @@
 .navbar {
   font-family: 'PokemonFont', sans-serif;
   background-image: url('https://i.imgur.com/R9rfsUs.jpg');
-  background-size:cover; /* Ensures the image covers the entire element */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-size:cover; 
+  background-repeat: no-repeat; 
   padding: 10px;
   display: flex;
   justify-content: space-between;

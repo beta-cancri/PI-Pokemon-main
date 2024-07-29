@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './filter-and-sort.styles.css'; // Ensure the CSS file is imported
+import './filter-and-sort.styles.css'; 
 
 const typeImages = {
   normal: 'https://i.imgur.com/Lbdodvd.png',

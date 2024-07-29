@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
@@ -14,7 +13,7 @@ const pokemon = {
   speed: 90,
   height: 1.2,
   weight: 6.0,
-  typeIds: [1, 2], // Assuming these types exist in your Type model
+  typeIds: [1, 2], 
 };
 
 describe('Pokemon routes', () => {
@@ -41,7 +40,7 @@ describe('Pokemon routes', () => {
           speed: 90,
           height: 1.0,
           weight: 8.5,
-          typeIds: [3, 4], // Assuming these types exist in your Type model
+          typeIds: [3, 4],
         })
         .expect(200)
         .then((res) => {

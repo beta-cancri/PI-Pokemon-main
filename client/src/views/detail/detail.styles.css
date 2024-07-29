@@ -13,7 +13,7 @@
   background-position:bottom;
   background-repeat: no-repeat;
   min-height: 100vh;
-  color: rgba(88, 87, 87, 0.822); /* Ensure text is readable over the background */
+  color: rgba(88, 87, 87, 0.822); 
 }
 
 .detail-page img {
@@ -28,7 +28,7 @@
 }
 
 .detail-page .attributes {
-  background-color: rgba(0, 0, 0, 0.452); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.452); 
   color: white;
   padding: 20px;
   border-radius: 10px;

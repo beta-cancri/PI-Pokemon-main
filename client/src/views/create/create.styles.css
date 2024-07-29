@@ -13,14 +13,14 @@
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  color: black; /* Ensure text is visible on the background */
+  color: black; 
 }
 
 .create-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 35px; /* Reduced gap between grid items */
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for the form */
+  gap: 35px; 
+  background-color: rgba(0, 0, 0, 0.8); 
   padding: 35px;
   border-radius: 10px;
   color: #fff;
@@ -31,7 +31,7 @@
 .create-form label {
   display: flex;
   flex-direction: column;
-  height: 80px; /* Fixed height to ensure consistent spacing */
+  height: 80px; 
 }
 
 .create-form input,
@@ -48,7 +48,7 @@
   color: #ff6b6b;
   font-size: 12px;
   margin-top: 5px;
-  height: 15px; /* Fixed height to reserve space for error messages */
+  height: 15px; 
 }
 
 .type-selection {
@@ -57,14 +57,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   gap: 10px;
-  justify-items: center; /* Center icons horizontally */
-  margin-bottom: 20px; /* Add some space below the type selection */
-  position: relative; /* Add position relative for absolute positioning of error message */
+  justify-items: center; 
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .type-selection .error {
-  position: absolute; /* Position the error message absolutely */
-  bottom: -20px; /* Adjust the position to be below the type selection */
+  position: absolute;
+  bottom: -20px; 
   text-align: center;
   color: #ff6b6b;
   font-size: 12px;
@@ -72,8 +72,8 @@
 }
 
 .type-icon {
-  width: 40px; /* Adjust the size as needed */
-  height: 40px; /* Adjust the size as needed */
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   border: 2px solid transparent;
   border-radius: 5px;

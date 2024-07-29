@@ -14,12 +14,12 @@
   padding: 10px;
   text-align: center;
   background-color: #fff;
-  background-image: none; /* No background image by default */
-  transition: background-image 0.3s ease; /* Smooth transition for background image */
+  background-image: none; 
+  transition: background-image 0.3s ease; 
 }
 
 .card:hover {
-  background-image: url('https://i.imgur.com/JZ6t2A7.jpg'); /* Background image on hover */
+  background-image: url('https://i.imgur.com/JZ6t2A7.jpg'); 
   background-size: cover;
   background-position: center;
 }

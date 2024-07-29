@@ -12,7 +12,7 @@
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  color: black; /* Ensure text is visible on the background */
+  color: black; 
 }
 
 .search-bar {
@@ -25,18 +25,18 @@
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.308); /* Semi-transparent background for cards */
+  background-color: rgba(255, 255, 255, 0.308);
   border-radius: 10px;
   padding: 20px;
   margin: 10px;
 }
 
 .card h3 {
-  text-transform: capitalize; /* Capitalize Pokémon names */
+  text-transform: capitalize; 
 }
 
 .detail-page {
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for details */
+  background-color: rgba(0, 0, 0, 0.8);
   padding: 20px;
   border-radius: 10px;
   margin: 20px;

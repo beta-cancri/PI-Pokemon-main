@@ -8,7 +8,7 @@ const LandingPage = () => {
       <Link to="/home" className="enter-link">
         <button className="enter-button">Enter</button>
       </Link>
-      <div className="click-me-label">Click me =></div>
+      <div className="click-me-label">Click me</div>
     </div>
   );
 };
