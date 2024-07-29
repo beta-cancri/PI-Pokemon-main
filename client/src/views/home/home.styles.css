@@ -1,8 +1,18 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
 .home {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background-image: url('https://i.imgur.com/IiFHI2D.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: black; /* Ensure text is visible on the background */
 }
 
 .search-bar {
@@ -10,4 +20,47 @@
   padding: 10px;
   font-size: 16px;
   width: 300px;
+  border: none;
+  border-radius: 5px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.308); /* Semi-transparent background for cards */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.card h3 {
+  text-transform: capitalize; /* Capitalize Pokémon names */
+}
+
+.detail-page {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for details */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  color: #fff;
+}
+
+.filter-sort {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.filter-select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'PokemonFont', sans-serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-select:focus {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
 }

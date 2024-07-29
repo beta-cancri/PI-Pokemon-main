@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
 .landing {
   display: flex;
   flex-direction: column;
@@ -8,11 +13,36 @@
   background-size: cover;
   color: white;
   text-align: center;
+  position: relative;
+}
+
+.enter-link {
+  position: absolute;
+  top: 72%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
 }
 
 .enter-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
+  font-size: 0; /* Make text invisible */
+}
+
+.click-me-label {
+  position: absolute;
+  top: 72%;
+  left: 43%;
+  transform: translate(-50%, -50%);
+  font-family: 'PokemonFont', sans-serif;
+  color: white;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background */
+  padding: 2px 5px;
+  border-radius: 5px;
 }

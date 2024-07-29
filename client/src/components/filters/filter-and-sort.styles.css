@@ -1,0 +1,99 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
+.filter-sort {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.filter-select {
+  padding: 3px;
+  font-size: 11px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'PokemonFont', sans-serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-select:focus {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.reset-button {
+  padding: 5px 10px;
+  font-size: 11px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'PokemonFont', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.reset-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  padding: 3px;
+  font-size: 11px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-family: 'PokemonFont', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.dropdown-toggle:hover {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.dropdown-menu {
+  font-family: 'PokemonFont', sans-serif;
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #ddd;
+}
+
+.type-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}

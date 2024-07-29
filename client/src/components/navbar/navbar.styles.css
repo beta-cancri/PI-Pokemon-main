@@ -5,11 +5,14 @@
 
 .navbar {
   font-family: 'PokemonFont', sans-serif;
-  background-color: red;
+  background-image: url('https://i.imgur.com/R9rfsUs.jpg');
+  background-size:cover; /* Ensures the image covers the entire element */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 150px;
 }
 
 .navbar-content {
@@ -26,8 +29,9 @@
 }
 
 .navbar .nav-link {
-  color: white;
+  color: red;
   text-decoration: none;
+  font-size: 35px;
   margin: 0 10px;
   font-family: 'PokemonFont', sans-serif;
 }

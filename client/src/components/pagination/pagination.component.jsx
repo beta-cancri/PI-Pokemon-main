@@ -1,7 +1,7 @@
 import React from 'react';
 import './pagination.styles.css';
 
-const Pagination = ({ pokemonsPerPage, totalPokemons, paginate }) => {
+const Pagination = ({ pokemonsPerPage, totalPokemons, paginate, currentPage }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPokemons / pokemonsPerPage); i++) {
@@ -17,7 +17,7 @@ const Pagination = ({ pokemonsPerPage, totalPokemons, paginate }) => {
     <nav className="pagination">
       <ul className="pagination-list">
         {pageNumbers.map((number) => (
-          <li key={number} className="pagination-item">
+          <li key={number} className={`pagination-item ${number === currentPage ? 'active' : ''}`}>
             <a onClick={handleClick(number)} href="/" className="pagination-link">
               {number}
             </a>

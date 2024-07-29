@@ -1,7 +1,12 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .pagination-list {
@@ -11,16 +16,32 @@
 
 .pagination-item {
   margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .pagination-link {
+  font-family: 'PokemonFont', sans-serif;
   color: black;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px; /* Adjust padding to make buttons square */
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 0; /* Remove border-radius to make buttons square */
+  height: 40px; /* Set height for buttons */
+  width: 40px; /* Set width for buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.pagination-link:hover {
-  background-color: #ddd;
+.pagination-link:hover {  
+  background-color: transparent;
+  background-image: url('https://i.imgur.com/W8Vzyeo.png'); /* Background image on hover */
+  background-size: cover;
+  background-position: center;
+  color: transparent; /* Change text color to ensure visibility */
+}
+
+.pagination-item.active .pagination-link {
+  background-color: gray;
+  color: white;
 }

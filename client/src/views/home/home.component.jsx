@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPokemons, fetchPokemonByName } from '../../redux/actions';
+import { fetchPokemons } from '../../redux/actions';
 import Cards from '../../components/cards/cards.component';
 import Pagination from '../../components/pagination/pagination.component';
 import FilterAndSort from '../../components/filters/filter-and-sort.component';
@@ -87,6 +87,7 @@ const HomePage = ({ search, setSearch, handleSearchSubmit }) => {
             pokemonsPerPage={pokemonsPerPage}
             totalPokemons={filteredAndSortedPokemons.length}
             paginate={paginate}
+            currentPage={currentPage}
           />
         </>
       )}

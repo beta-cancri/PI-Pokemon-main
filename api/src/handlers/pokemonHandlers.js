@@ -39,6 +39,7 @@ const getDetailHandler = async (req, res) => {
 
 const createPokemonHandler = async (req, res) => {
   const { name, image, health, attack, defense, speed, height, weight, typeIds } = req.body;
+  console.log('Request Body:', req.body); // Add this line for debugging
   try {
     const response = await createPokemonDB(
       name,

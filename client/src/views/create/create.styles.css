@@ -1,23 +1,103 @@
+@font-face {
+  font-family: 'PokemonFont';
+  src: url('/assets/fonts/pokemon-font.ttf') format('truetype');
+}
+
 .create {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .create-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-  }
-  
-  .create-form label {
-    margin-bottom: 10px;
-  }
-  
-  .create-form input {
-    margin-bottom: 10px;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
+  font-family: 'PokemonFont', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: url('https://i.imgur.com/lRBpKg1.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: black; /* Ensure text is visible on the background */
+}
+
+.create-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px; /* Reduced gap between grid items */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background for the form */
+  padding: 35px;
+  border-radius: 10px;
+  color: #fff;
+  max-width: 800px;
+  margin: auto;
+}
+
+.create-form label {
+  display: flex;
+  flex-direction: column;
+  height: 80px; /* Fixed height to ensure consistent spacing */
+}
+
+.create-form input,
+.create-form select {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.create-form .error {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 5px;
+  height: 15px; /* Fixed height to reserve space for error messages */
+}
+
+.type-selection {
+  margin-top: 35px;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 10px;
+  justify-items: center; /* Center icons horizontally */
+  margin-bottom: 20px; /* Add some space below the type selection */
+  position: relative; /* Add position relative for absolute positioning of error message */
+}
+
+.type-selection .error {
+  position: absolute; /* Position the error message absolutely */
+  bottom: -20px; /* Adjust the position to be below the type selection */
+  text-align: center;
+  color: #ff6b6b;
+  font-size: 12px;
+  width: 100%;
+}
+
+.type-icon {
+  width: 40px; /* Adjust the size as needed */
+  height: 40px; /* Adjust the size as needed */
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.type-icon.selected {
+  border-color: #ff6b6b;
+}
+
+.create-form button {
+  grid-column: 1 / -1;
+  padding: 10px;
+  background-color: white;
+  color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'PokemonFont', sans-serif;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.create-form button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}

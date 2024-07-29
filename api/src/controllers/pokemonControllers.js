@@ -27,8 +27,21 @@ const getPokemonById = async (id, source) => {
   if (source === 'bdd') {
     const pokemon = await Pokemon.findByPk(id, { include: Type });
     if (!pokemon) throw new Error('Pokemon not found in the database');
-    console.log('Pokemon found by ID:', pokemon);
-    return pokemon;
+    const formattedPokemon = {
+      id: pokemon.id,
+      name: pokemon.name,
+      image: pokemon.image,
+      health: pokemon.health,
+      attack: pokemon.attack,
+      defense: pokemon.defense,
+      speed: pokemon.speed,
+      height: pokemon.height,
+      weight: pokemon.weight,
+      types: pokemon.Types.map(type => type.name),
+      created: pokemon.created,
+    };
+    console.log('Pokemon found by ID:', formattedPokemon);
+    return formattedPokemon;
   } else {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     const { name, stats, sprites, types, height, weight } = response.data;
@@ -50,6 +63,7 @@ const getPokemonById = async (id, source) => {
     };
   }
 };
+
 
 const getAllPokemons = async () => {
   try {

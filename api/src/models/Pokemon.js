@@ -17,27 +17,27 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     health: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: false,
     },
     attack: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: false,
     },
     defense: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: false,
     },
     speed: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: true,
     },
     height: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: true,
     },
     weight: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT, // Changed to FLOAT
       allowNull: true,
     },
     created: { 
