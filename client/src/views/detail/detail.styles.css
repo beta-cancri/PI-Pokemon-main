@@ -13,7 +13,7 @@
   background-position:bottom;
   background-repeat: no-repeat;
   min-height: 100vh;
-  color: rgba(248, 248, 248, 0.938); /* Ensure text is readable over the background */
+  color: rgba(88, 87, 87, 0.822); /* Ensure text is readable over the background */
 }
 
 .detail-page img {

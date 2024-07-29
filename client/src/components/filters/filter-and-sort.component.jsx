@@ -82,7 +82,7 @@ const FilterAndSort = ({ setFilter, setSort, setTypeFilter }) => {
         <option value="attack-desc">Attack Descending</option>
       </select>
       <div className="dropdown">
-        <button className="filter-select dropdown-toggle">
+        <button className="filter-select dropdown-toggle" role="button">
           {type || 'All Types'}
         </button>
         <div className="dropdown-menu">

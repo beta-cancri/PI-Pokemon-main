@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { createPokemon } from '../../redux/actions';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './create.styles.css';
 
 const typeImages = {
@@ -44,7 +45,8 @@ const CreatePage = () => {
   });
   const [errors, setErrors] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
-  const maxTypes = 2; // Set the maximum number of types
+  const maxTypes = 2;
+  const [toastDisplayed, setToastDisplayed] = useState(false);
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -92,7 +94,13 @@ const CreatePage = () => {
         : [...prevForm.typeIds, typeId];
 
       if (newTypeIds.length > maxTypes) {
-        toast.error(`You can select up to ${maxTypes} types only`);
+        if (!toastDisplayed) {
+          toast.error(`You can select up to ${maxTypes} types only`, {
+            position: toast.POSITION.TOP_CENTER,
+            onClose: () => setToastDisplayed(false)
+          });
+          setToastDisplayed(true);
+        }
         return prevForm;
       }
 
@@ -104,7 +112,7 @@ const CreatePage = () => {
     e.preventDefault();
     if (isFormValid) {
       dispatch(createPokemon(form));
-      toast.success('Pokemon created successfully!');
+      toast.success('Pokemon created successfully!', { position: toast.POSITION.TOP_CENTER });
       setForm({
         name: '',
         image: '',
